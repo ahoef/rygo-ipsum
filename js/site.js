@@ -1,27 +1,27 @@
 $(document).ready(function() {
+  function hideAll() {
+      $( ".short-text, .medium-text, .long-text" ).hide();
+      $( ".short, .medium, .long" ).css( "color", "black" );
+  }
+
   $( ".short" ).click(function() {
-      $( ".medium-text" ).css( "display", "none" );
-      $( ".long-text" ).css( "display", "none" );
+      hideAll();
       $( ".short-text" ).css( "display", "block" );
       $( ".short" ).css( "color", "salmon" );
-      $( ".medium" ).css( "color", "black" );
-      $( ".long" ).css( "color", "black" );
-  });
-  $( ".medium" ).click(function() {
-      $( ".short-text" ).css( "display", "none" );
-      $( ".long-text" ).css( "display", "none" );
-      $( ".medium-text" ).css( "display", "block" );
-      $( ".medium" ).css( "color", "salmon" );
-      $( ".short" ).css( "color", "black" );
-      $( ".long" ).css( "color", "black" );
 
   });
+  $( ".medium" ).click(function() {
+      hideAll();
+      $( ".medium-text" ).css( "display", "block" );
+      $( ".medium" ).css( "color", "salmon" );
+  });
     $( ".long" ).click(function() {
-      $( ".short-text" ).css( "display", "none" );
-      $( ".medium-text" ).css( "display", "none" );
+      hideAll();
       $( ".long-text" ).css( "display", "block" );
       $( ".long" ).css( "color", "salmon" );
-      $( ".medium" ).css( "color", "black" );
-      $( ".short" ).css( "color", "black" );
   });
 });
+
+// We want to build paragraphs (by randomly choosing
+// 3-7 sentences from sentences.json), and then after
+// each paragraph include a line break.
