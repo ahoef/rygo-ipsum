@@ -3,25 +3,26 @@ $(document).ready(function() {
       $( ".short, .medium, .long" ).css( "color", "black" );
   }
 
-
+  function makePink(selector) {
+    $(selector).css("color", "salmon");
+  }
 
   $( ".short" ).click(function() {
       hideAll();
-      $( ".short" ).css( "color", "salmon" );
-      generateIpsum(1, 4);
+      makePink('.short');
+      generateIpsum(1, 8);
 
   });
   $( ".medium" ).click(function() {
       hideAll();
-      $( ".medium" ).css( "color", "salmon" );
-      generateIpsum(3, 3);
+      makePink('.medium');
+      generateIpsum(3, 5);
   });
     $( ".long" ).click(function() {
       hideAll();
-      $( ".long" ).css( "color", "salmon" );
-      generateIpsum(5, 3);
+      makePink('.long');
+      generateIpsum(5, 5);
   });
-
 
   function generateIpsum(paragraphCount, sentenceCount){
     $.getJSON("sentences.json",
