@@ -1,27 +1,39 @@
 $(document).ready(function() {
   function hideAll() {
-      $( ".short-text, .medium-text, .long-text" ).hide();
       $( ".short, .medium, .long" ).css( "color", "black" );
   }
 
+
+
   $( ".short" ).click(function() {
       hideAll();
-      $( ".short-text" ).css( "display", "block" );
       $( ".short" ).css( "color", "salmon" );
+      generateIpsum(1, 4);
 
   });
   $( ".medium" ).click(function() {
       hideAll();
-      $( ".medium-text" ).css( "display", "block" );
       $( ".medium" ).css( "color", "salmon" );
+      generateIpsum(3, 3);
   });
     $( ".long" ).click(function() {
       hideAll();
-      $( ".long-text" ).css( "display", "block" );
       $( ".long" ).css( "color", "salmon" );
+      generateIpsum(5, 3);
   });
-});
 
-// We want to build paragraphs (by randomly choosing
-// 3-7 sentences from sentences.json), and then after
-// each paragraph include a line break.
+
+  function generateIpsum(paragraphCount, sentenceCount){
+    $.getJSON("sentences.json",
+      function(data) {
+        var arr = _.shuffle(data);
+        var output = '';
+        for (var p=0; p < paragraphCount; p++) {
+          var firstSentences = _.first(arr, sentenceCount);
+          var arr = _.rest(arr, sentenceCount);
+          output = output + "<p>" + firstSentences.join(" ") + "</p>";
+        }
+        $('.text').html(output);
+    });
+  }
+});
