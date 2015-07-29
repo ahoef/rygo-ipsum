@@ -1,28 +1,11 @@
 $(document).ready(function() {
-  function hideAll() {
+  function makeBlack() {
       $( ".short, .medium, .long" ).css( "color", "black" );
   }
 
   function makePink(selector) {
     $(selector).css("color", "salmon");
   }
-
-  $( ".short" ).click(function() {
-      hideAll();
-      makePink('.short');
-      generateIpsum(1, 8);
-
-  });
-  $( ".medium" ).click(function() {
-      hideAll();
-      makePink('.medium');
-      generateIpsum(3, 5);
-  });
-    $( ".long" ).click(function() {
-      hideAll();
-      makePink('.long');
-      generateIpsum(5, 5);
-  });
 
   function generateIpsum(paragraphCount, sentenceCount){
     $.getJSON("sentences.json",
@@ -31,10 +14,22 @@ $(document).ready(function() {
         var output = '';
         for (var p=0; p < paragraphCount; p++) {
           var firstSentences = _.first(arr, sentenceCount);
-          var arr = _.rest(arr, sentenceCount);
+          arr = _.rest(arr, sentenceCount);          
           output = output + "<p>" + firstSentences.join(" ") + "</p>";
         }
         $('.text').html(output);
     });
   }
+
+  function toggleIpsum(selector, paragraphCount, sentenceCount) {
+    $(selector).on('click', function() {
+      makeBlack();
+      makePink(selector);
+      generateIpsum(paragraphCount, sentenceCount);
+    })
+  }
+
+  toggleIpsum('.short', 1, 8);
+  toggleIpsum('.medium', 3, 5);
+  toggleIpsum('.long', 5, 5);
 });
