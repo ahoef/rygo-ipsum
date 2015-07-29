@@ -112,10 +112,6 @@ section.text {
   cursor: pointer;
 }
 
-.buttons li.short {
-  color: salmon;
-}
-
 .medium-text, .long-text {
   display: none;
 }
