@@ -1,10 +1,21 @@
 $(document).ready(function() {
 
+  /**
+  * Remove any existing selected states, and change a button's text color to 
+  pink if it was clicked 
+  * @param {string} selector - DOM element that triggers event
+  */
   function addButtonSelectedState(selector) {
     $('.buttons li').removeClass('salmon');
     $(selector).addClass('salmon');
   }
 
+  /**
+  * Create a block of text with random sentence order. Its length is determined
+  * by the value of the paragraph & sentence params 
+  * @param {number} paragraphCount - number of paragraphs generated
+  * @param {number} sentenceCount - number of sentences generated in each paragraph
+  */
   function generateIpsum(paragraphCount, sentenceCount){
     $.getJSON('sentences.json',
       function(data) {
@@ -20,6 +31,13 @@ $(document).ready(function() {
     });
   }
 
+  /**
+  * Attach an event listener that calls functions to change a button's 
+  * selected state & generate the text block
+  * @param {string} selector - DOM element that triggers event
+  * @param {number} paragraphCount - number of paragraphs generated
+  * @param {number} sentenceCount - number of sentences generated in each paragraph
+  */
   function toggleIpsum(selector, paragraphCount, sentenceCount) {
     $(selector).on('click', function() {
       addButtonSelectedState(selector)
