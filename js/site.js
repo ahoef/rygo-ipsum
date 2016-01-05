@@ -11,7 +11,7 @@ $(document).ready(function() {
   }
 
   /**
-  * Create a multi-dimensional array of random ipsum text. Its length is determined
+  * Create a multi-dimensional array of random ipsum text. Length is determined
   * by the value of the paragraph & sentence params 
   * @param {number} paragraphCount - number of paragraphs generated
   * @param {number} sentenceCount - number of sentences generated in each paragraph
@@ -20,10 +20,11 @@ $(document).ready(function() {
     $.getJSON('sentences.json',
       function(data) {
         var sentenceArr = _.shuffle(data);
+        var firstSentences = [];
         var paragraphArr = [];
 
         for (var p=0; p < paragraphCount; p++) {
-          var firstSentences = _.first(sentenceArr, sentenceCount);
+          firstSentences = _.first(sentenceArr, sentenceCount);
           paragraphArr.push(firstSentences);
           sentenceArr = _.rest(sentenceArr, sentenceCount);
         }
@@ -33,8 +34,8 @@ $(document).ready(function() {
   }
 
   /**
-  * Create markup based on data from the ipsum array
-  * @param {Array} ipsum - multi-dimensional array of paragraphs -> sentences
+  * Create and insert markup based on data from the ipsum array
+  * @param {Array} ipsum - multi-dimensional array of paragraphs, sentences
   */
   function generateTemplate(ipsum) {
     var templateString = $('.template').html();
@@ -59,4 +60,5 @@ $(document).ready(function() {
   toggleIpsum('.short', 1, 8);
   toggleIpsum('.medium', 3, 5);
   toggleIpsum('.long', 5, 5);
+  
 });
