@@ -11,7 +11,7 @@ $(document).ready(function() {
   }
 
   /**
-  * Create a block of text with random sentence order. Its length is determined
+  * Create a multi-dimensional array of random ipsum text. Its length is determined
   * by the value of the paragraph & sentence params 
   * @param {number} paragraphCount - number of paragraphs generated
   * @param {number} sentenceCount - number of sentences generated in each paragraph
@@ -19,16 +19,27 @@ $(document).ready(function() {
   function generateIpsum(paragraphCount, sentenceCount){
     $.getJSON('sentences.json',
       function(data) {
-        var arr = _.shuffle(data);
-        var output = '';
+        var sentenceArr = _.shuffle(data);
+        var paragraphArr = [];
+
         for (var p=0; p < paragraphCount; p++) {
-          var firstSentences = _.first(arr, sentenceCount);
-          arr = _.rest(arr, sentenceCount);
-          console.log(arr);          
-          output = output + '<p>' + firstSentences.join(' ') + '</p>';
+          var firstSentences = _.first(sentenceArr, sentenceCount);
+          paragraphArr.push(firstSentences);
+          sentenceArr = _.rest(sentenceArr, sentenceCount);
         }
-        $('.text').html(output);
+
+        return generateTemplate(paragraphArr);
     });
+  }
+
+  /**
+  * Create markup based on data from the ipsum array
+  * @param {Array} ipsum - multi-dimensional array of paragraphs -> sentences
+  */
+  function generateTemplate(ipsum) {
+    var templateString = $('.template').html();
+    var template = _.template(templateString)({ipsum: ipsum});
+    $('.text').html(template);
   }
 
   /**

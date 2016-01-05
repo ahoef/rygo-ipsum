@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 
     <title>Rygo Ipsum</title>
-    <meta name="description" content="Ryan Gosling lorem ipsum text" />
+    <meta name="description" content="Ryan Gosling lorem ipsum text generator, written by Alexandra Hoefinger" />
 
     <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
@@ -45,6 +45,19 @@
 
     <section class="text"></section>
 
+    <script type="text/template" class="template">
+      <section>
+        <% _.each(ipsum, function(paragraph) { %>
+          <p>
+          <% _.each(paragraph, function(sentence) { %>
+              <%= sentence %>
+          <% }) %>
+          </p>
+        <% }) %>
+      </section>
+    </script>
+
+
   </body>
-  
+
 </html>
