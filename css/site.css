@@ -13,44 +13,6 @@
   box-sizing: border-box;
 }
 
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-
-.desaturate
-{
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    filter: grayscale(100%);
-    filter: gray;
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-}
-
-.strip-input
-{
-  outline-style: none;
-  border:none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  &:focus
-  {
-    outline: none;
-  }
-}
-
-.opacity {
-  zoom: 1;
-  filter: alpha(opacity=50);
-  opacity: 0.5;
-}
-
-/*//////////////////////////////////////////////////////////////////////////*/
-
 html {
   height: 100%;
   width: 100%;
@@ -60,7 +22,7 @@ body {
   background: url("../images/rygo-bgV3.jpg") right -100px no-repeat;
   background-size: cover;
   height: 100%;
-  font-family: Milano;
+  font-family: Milano, sans-serif;
   min-width: 880px;
   position: relative;
 }
@@ -129,9 +91,12 @@ section.text {
   background-color: #333;
 }
 
+.salmon {
+  color: salmon;
+}
+
 @media (max-width: 1250px) {
   body {
-    /*background: url("../images/rygo-bgV4.jpg") right top no-repeat;*/
     background: url("../images/rygo-right-arm-crop-wide.jpg") right top no-repeat;
   }
   section.text {
@@ -141,7 +106,6 @@ section.text {
 
 @media (max-width: 1115px) {
   body {
-    /*background: url("../images/rygo-bgV4.jpg") right top no-repeat;*/
     background: url("../images/v6.jpg") right top no-repeat;
   }
   section.text {
@@ -150,10 +114,6 @@ section.text {
 }
 
 @media (max-width: 945px) {
-  body {
-    /*background: url("../images/rygo-bgV4.jpg") right top no-repeat;*/
-    background: url("../images/v6.jpg") right top no-repeat;
-  }
   section.text {
   width: 40%;
   }

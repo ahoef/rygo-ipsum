@@ -1,21 +1,20 @@
 $(document).ready(function() {
-  function makeBlack() {
-      $( ".short, .medium, .long" ).css( "color", "black" );
-  }
 
-  function makePink(selector) {
-    $(selector).css("color", "salmon");
+  function addButtonSelectedState(selector) {
+    $('.buttons li').removeClass('salmon');
+    $(selector).addClass('salmon');
   }
 
   function generateIpsum(paragraphCount, sentenceCount){
-    $.getJSON("sentences.json",
+    $.getJSON('sentences.json',
       function(data) {
         var arr = _.shuffle(data);
         var output = '';
         for (var p=0; p < paragraphCount; p++) {
           var firstSentences = _.first(arr, sentenceCount);
-          arr = _.rest(arr, sentenceCount);          
-          output = output + "<p>" + firstSentences.join(" ") + "</p>";
+          arr = _.rest(arr, sentenceCount);
+          console.log(arr);          
+          output = output + '<p>' + firstSentences.join(' ') + '</p>';
         }
         $('.text').html(output);
     });
@@ -23,8 +22,7 @@ $(document).ready(function() {
 
   function toggleIpsum(selector, paragraphCount, sentenceCount) {
     $(selector).on('click', function() {
-      makeBlack();
-      makePink(selector);
+      addButtonSelectedState(selector)
       generateIpsum(paragraphCount, sentenceCount);
     })
   }
